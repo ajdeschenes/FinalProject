@@ -1,5 +1,7 @@
 // from data.js
-var tableData = data;
+var tableData = d3.json("/internRoute", function(data) {
+  console.log(data);
+});
 
 // get table references
 var tbody = d3.select("#data-table");
