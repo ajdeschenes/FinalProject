@@ -9,7 +9,14 @@ from flask import (
     redirect)
 from flask_sqlalchemy import SQLAlchemy
 
-engine = create_engine("sqlite:///imdbdata.sqlite")
+from sqlalchemy import create_engine, func
+from sqlalchemy.ext.automap import automap_base
+from sqlalchemy.orm import Session
+
+
+
+conn_str = "root:helpme01@localhost/imdbData?charset=utf8"
+engine = create_engine(f'mysql://{conn_str}')
 
 Base = automap_base()
 
@@ -32,23 +39,21 @@ def home():
 
 @app.route("/moviedata")
 def movies():
-    results = db.session.query(allMovies.Price, allMovies.Room_Id, allMovies.Room_Type, allMovies.City, allMovies.Country, allMovies.Latitude, allMovies.Longitude).all()
+    results = db.session.query(allMovies.averageRating, allMovies.isAdult, allMovies.startYear, allMovies.runtimeMinutes, allMovies.Genre1, allMovies.Genre2, allMovies.Genre3).all()
     movieData = []
 
     for result in results:
-        price = result[0] 
-        room_id = result[1] 
-        room_type = result[2] 
-        city = result[3] 
-        country = result[4]
-        lat = result[5]
-        lon = result[6]
-        selection = result[7]
-        distance = result[8]
+        rating = result[0] 
+        adult = result[1] 
+        year = result[2] 
+        runtime = result[3] 
+        primary_genre = result[4]
+        secondary_genre = result[5]
+        tertiary_genre = result[6]
 
 
         result_data = {
-            "price": price,
+            "rating": price,
             "room_id": room_id,
             "room_type": room_type,
             "city": city,
