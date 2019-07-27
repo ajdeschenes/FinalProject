@@ -27,9 +27,14 @@ allMovies = Base.classes.movies
 session = Session(engine)
 
 
+
+
 # setup Flask app --- why did we need CORS?
 app = Flask(__name__)
 CORS(app)
+
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:helpme01@localhost/imdbData'
+db = SQLAlchemy(app)
 
 # create route that renders index.html template
 @app.route("/")
@@ -53,29 +58,35 @@ def movies():
 
 
         result_data = {
-            "rating": price,
-            "room_id": room_id,
-            "room_type": room_type,
-            "city": city,
-            "country": country,
-            "lat": lat,
-            "lon": lon,
-            "selection": selection,
-            "distance": distance
+            "rating": rating,
+            "adult": adult,
+            "year": year,
+            "runtime": runtime,
+            "primary_genre": primary_genre,
+            "secondary_genre": secondary_genre,
+            "tertiary_genre": tertiary_genre
         }
+
+        movieData.append(result_data)
+
+    return jsonify(movieData)
 
 
 @app.route("/prediction")
 def predict():
 
     # Load Model
+    loaded_model = pickle.load(open(filename, '../imdbData'))
 
     # Predict result
-
+    result = loaded_model.predict()
+    print(result)
     
     return prediction
 
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)
+
+
 
