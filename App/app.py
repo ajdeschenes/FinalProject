@@ -64,13 +64,13 @@ def movies():
 
 
         result_data = {
-            "rating": rating,
             "adult": adult,
             "year": year,
             "runtime": runtime,
             "primary_genre": primary_genre,
             "secondary_genre": secondary_genre,
-            "tertiary_genre": tertiary_genre
+            "tertiary_genre": tertiary_genre,
+            "rating": rating
         }
 
         movieData.append(result_data)
@@ -78,17 +78,20 @@ def movies():
     return jsonify(movieData)
 
 
-@app.route("/prediction")
-def predict(form_entry):
+
+@app.route("/prediction", methods=["GET", "POST"])
+def predict():
 
     # Load Model
     loaded_model = pickle.load(open(filename, '../imdbData'))
 
+    new_film = [request.form["adults"], request.form["years"], request.form["film_length"], request.form["genre_1"], request.form["genre_2"], request.form["genre_3"]]
+
     # Predict result
-    result = loaded_model.predict(form_entry)
+    result = loaded_model.predict(new_film)
     print(result)
     
-    return prediction
+    return render_template("index.html", result=result)
 
 
 if __name__ == "__main__":
