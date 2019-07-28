@@ -1,31 +1,40 @@
 // from data.js
-var tableData = d3.json("/moviedata", function(data) {
-  console.log(data);
+var tableData = [];
+
+d3.json("/moviedata", function(dataPlease) {
+  console.log(dataPlease);
+  var AllData = dataPlease;
+  console.log(AllData);
+  // display all values
+  for (var i = 0; i < AllData.length; i++) {
+    tableData.push(AllData[i])
+}
 });
+console.log(tableData);
 
 // get table references
 var tbody = d3.select("#data-table");
 
-function buildTable() {
-  let jsonData = tableData;
+function buildTable(DATA) {
+  // let jsonData = tableData;
  // First, clear out any existing data
 tbody.html("");
-console.log(jsonData.Object.values);
+console.log(DATA);
 
  
- // Next, loop through each object in the data
- // and append a row and cells for each value in the row
-//  actual_data.length forEach((dataRow) => {
-//    // Append a row to the table body
-//    var row = tbody.append("tr");
+// Next, loop through each object in the data
+// and append a row and cells for each value in the row
+DATA.forEach((dataRow) => {
+  // Append a row to the table body
+  var row = tbody.append("tr");
 
-//    // Loop through each field in the dataRow and add
-//    // each value as a table cell (td)
-//    Object.values(dataRow).forEach((key) => {
-//      var cell = row.append("td");
-//      cell.text(key);
-//    });
-//  });
+  // Loop through each field in the dataRow and add
+  // each value as a table cell (td)
+  Object.entries(dataRow).forEach(([key, value]) => {
+    var cell = row.append("td");
+    cell.text(value);
+  });
+});
 
  filterTable2();
 }
@@ -102,7 +111,7 @@ function filterTable2() {
   
   if (adults_filtered.property("value") === "") {
     adults_entered.text(" ")
-    console.log("No City");
+    console.log("No Adult Filter Entered");
   }
   else {
     adults_entered.text(adults_filtered.property("value"));
@@ -111,7 +120,7 @@ function filterTable2() {
   
   if (years_filtered.property("value") === "") {
     years_entered.text(" ")
-    console.log("No State");
+    console.log("No Years Filter Entered");
   }
   else {
     years_entered.text(years_filtered.property("value"));
@@ -120,7 +129,7 @@ function filterTable2() {
   
   if (film_length_filtered.property("value") === "") {
     film_length_entered.text(" ")
-    console.log("No Country");
+    console.log("No Film Length Filter Entered");
   }
   else {
     film_length_entered.text(film_length_filtered.property("value"));
@@ -129,7 +138,7 @@ function filterTable2() {
 
   if (genre1_filtered.property("value") === "") {
     genre1_entered.text(" ")
-    console.log("No Shape");
+    console.log("No Primary Genre Entered");
   }
   else {
     genre1_entered.text(genre1_filtered.property("value"));
@@ -138,7 +147,7 @@ function filterTable2() {
 
   if (genre2_filtered.property("value") === "") {
     genre2_entered.text(" ")
-    console.log("No Place Holder 6");
+    console.log("No Secondary Genre Entered");
   }
   else {
     genre2_entered.text(genre2_filtered.property("value"));
@@ -147,7 +156,7 @@ function filterTable2() {
 
   if (genre3_filtered.property("value") === "") {
     genre3_entered.text(" ")
-    console.log("No Place Holder 7");
+    console.log("No Tertiary Genre Entered");
   }
   else {
     genre3_entered.text(genre3_filtered.property("value"));
