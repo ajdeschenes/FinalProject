@@ -15,7 +15,7 @@ from sqlalchemy.orm import Session
 
 
 
-conn_str = "root:helpme01@localhost/imdbData?charset=utf8"
+conn_str = "root:<password>@localhost/imdbData?charset=utf8"
 engine = create_engine(f'mysql://{conn_str}')
 
 Base = automap_base()
@@ -33,13 +33,19 @@ session = Session(engine)
 app = Flask(__name__)
 CORS(app)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:helpme01@localhost/imdbData'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:<password>@localhost/imdbData'
 db = SQLAlchemy(app)
 
 # create route that renders index.html template
 @app.route("/")
 def home():
     return render_template("index.html")
+
+@app.route('/test', methods=['POST'])
+def my_form_post():
+    text = request.form['text']
+    processed_text = text.upper()
+    return processed_text
 
 
 @app.route("/moviedata")
@@ -73,13 +79,13 @@ def movies():
 
 
 @app.route("/prediction")
-def predict():
+def predict(form_entry):
 
     # Load Model
     loaded_model = pickle.load(open(filename, '../imdbData'))
 
     # Predict result
-    result = loaded_model.predict()
+    result = loaded_model.predict(form_entry)
     print(result)
     
     return prediction
