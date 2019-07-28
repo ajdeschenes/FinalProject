@@ -171,31 +171,31 @@ select {
   color: #D5CABB;
 }
 
-#date_entered {
+#ratings_entered {
     text-align: center;
 }
 
-#city_entered {
+#adults_entered {
     text-align: center;
 }
 
-#state_entered {
+#years_entered {
     text-align: center;
 }
 
-#country_entered {
+#film_length_entered {
     text-align: center;
 }
 
-#shape_entered {
+#genre1_entered {
     text-align: center;
 }
 
-#place_holder6 {
+#genre2_entered {
     text-align: center;
 }
 
-#place_holder7 {
+#genre3_entered {
     text-align: center;
 }
 

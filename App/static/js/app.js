@@ -1,5 +1,5 @@
 // from data.js
-var tableData = d3.json("/internRoute", function(data) {
+var tableData = d3.json("/moviedata", function(data) {
   console.log(data);
 });
 
@@ -67,87 +67,87 @@ function filterTable() {
 }
 
 // var tbody2 = d3.select("#filter-table");
-var date_filtered = d3.select("#datetime");
-var city_filtered = d3.select("#city");
-var state_filtered = d3.select("#state");
-var country_filtered = d3.select("#country");
-var shape_filtered = d3.select("#shape");
-var ph6_filtered = d3.select("#six");
-var ph7_filtered = d3.select("#seven");
+var ratings_filtered = d3.select("#ratings");
+var adults_filtered = d3.select("#adults");
+var years_filtered = d3.select("#years");
+var film_length_filtered = d3.select("#film_length");
+var genre1_filtered = d3.select("#genre_1");
+var genre2_filtered = d3.select("#genre_2");
+var genre3_filtered = d3.select("#genre_3");
 
-var date_entered = d3.select("#date_entered");
-var city_entered = d3.select("#city_entered");
-var state_entered = d3.select("#state_entered");
-var country_entered = d3.select("#country_entered");
-var shape_entered = d3.select("#shape_entered");
-var ph6_entered = d3.select("#place_holder6");
-var ph7_entered = d3.select("#place_holder7");
+var ratings_entered = d3.select("#ratings_entered");
+var adults_entered = d3.select("#adults_entered");
+var years_entered = d3.select("#years_entered");
+var film_length_entered = d3.select("#film_length_entered");
+var genre1_entered = d3.select("#genre1_entered");
+var genre2_entered = d3.select("#genre2_entered");
+var genre3_entered = d3.select("#genre3_entered");
 
 
 function filterTable2() {
 
-  if (date_filtered.property("value") === "") {
-    date_entered.text(" ");
-    console.log("No Date");
-  }
-  else {
-    date_entered.text(date_filtered.property("value"));
-    console.log(date_filtered.property("value"));
-  }
+  // if (ratings_filtered.property("value") === "") {
+  //   ratings_entered.text(" ");
+  //   console.log("No Date");
+  // }
+  // else {
+  //   ratings_entered.text(ratings_filtered.property("value"));
+  //   console.log(ratings_filtered.property("value"));
+  // }
   
-  if (city_filtered.property("value") === "") {
-    city_entered.text(" ")
+  if (adults_filtered.property("value") === "") {
+    adults_length_entered.text(" ")
     console.log("No City");
   }
   else {
-    city_entered.text(city_filtered.property("value"));
-    console.log(city_filtered.property("value"));
+    adults_entered.text(adults_filtered.property("value"));
+    console.log(adults_filtered.property("value"));
   }
   
-  if (state_filtered.property("value") === "") {
-    state_entered.text(" ")
+  if (years_filtered.property("value") === "") {
+    years_entered.text(" ")
     console.log("No State");
   }
   else {
-    state_entered.text(state_filtered.property("value"));
-    console.log(state_filtered.property("value"));
+    years_entered.text(years_filtered.property("value"));
+    console.log(years_filtered.property("value"));
   }
   
-  if (country_filtered.property("value") === "") {
-    country_entered.text(" ")
+  if (film_length_filtered.property("value") === "") {
+    film_length_entered.text(" ")
     console.log("No Country");
   }
   else {
-    country_entered.text(country_filtered.property("value"));
-    console.log(country_filtered.property("value"));
+    film_length_entered.text(film_length_filtered.property("value"));
+    console.log(film_length_filtered.property("value"));
   }
 
-  if (shape_filtered.property("value") === "") {
-    shape_entered.text(" ")
+  if (genre1_filtered.property("value") === "") {
+    genre1_entered.text(" ")
     console.log("No Shape");
   }
   else {
-    shape_entered.text(shape_filtered.property("value"));
-    console.log(shape_filtered.property("value"));
+    genre1_entered.text(genre1_filtered.property("value"));
+    console.log(genre1_filtered.property("value"));
   }
 
-  // if (ph6_filtered.property("value") === "") {
-  //   place_holder6.text(" ")
-  //   console.log("No Place Holder 6");
-  // }
-  // else {
-  //   place_holder6.text(ph6_filtered.property("value"));
-  //   console.log(ph6_filtered.property("value"));
-  // }
+  if (genre2_filtered.property("value") === "") {
+    genre2_entered.text(" ")
+    console.log("No Place Holder 6");
+  }
+  else {
+    genre2_entered.text(genre2_filtered.property("value"));
+    console.log(genre2_filtered.property("value"));
+  }
 
-  // if (ph7_filtered.property("value") === "") {
-  //   place_holder7.text(" ")
-  //   console.log("No Place Holder 7");
-  // }
-  // else {
-  //   place_holder7.text(ph7_filtered.property("value"));
-  //   console.log(ph7_filtered.property("value"));
-  // }
+  if (genre3_filtered.property("value") === "") {
+    genre3_entered.text(" ")
+    console.log("No Place Holder 7");
+  }
+  else {
+    genre3_entered.text(genre3_filtered.property("value"));
+    console.log(genre3_filtered.property("value"));
+  }
 
   
 }
