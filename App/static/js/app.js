@@ -6,26 +6,31 @@ var tableData = d3.json("/moviedata", function(data) {
 // get table references
 var tbody = d3.select("#data-table");
 
-function buildTable(data) {
-  // First, clear out any existing data
-  tbody.html("");
+function buildTable() {
+  let jsonData = tableData;
+ // First, clear out any existing data
+tbody.html("");
+console.log(jsonData.Object.values);
 
-  // Next, loop through each object in the data
-  // and append a row and cells for each value in the row
-  data.forEach((dataRow) => {
-    // Append a row to the table body
-    var row = tbody.append("tr");
+ 
+ // Next, loop through each object in the data
+ // and append a row and cells for each value in the row
+//  actual_data.length forEach((dataRow) => {
+//    // Append a row to the table body
+//    var row = tbody.append("tr");
 
-    // Loop through each field in the dataRow and add
-    // each value as a table cell (td)
-    Object.values(dataRow).forEach((val) => {
-      var cell = row.append("td");
-      cell.text(val);
-    });
-  });
+//    // Loop through each field in the dataRow and add
+//    // each value as a table cell (td)
+//    Object.values(dataRow).forEach((key) => {
+//      var cell = row.append("td");
+//      cell.text(key);
+//    });
+//  });
 
-  filterTable2();
+ filterTable2();
 }
+
+
 
 // Keep Track of all filters
 var filters = {};
@@ -96,7 +101,7 @@ function filterTable2() {
   // }
   
   if (adults_filtered.property("value") === "") {
-    adults_length_entered.text(" ")
+    adults_entered.text(" ")
     console.log("No City");
   }
   else {
