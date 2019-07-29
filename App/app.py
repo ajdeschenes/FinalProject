@@ -50,7 +50,7 @@ def my_form_post():
 
 @app.route("/moviedata")
 def movies():
-    results = db.session.query(allMovies.averageRating, allMovies.isAdult, allMovies.startYear, allMovies.runtimeMinutes, allMovies.Genre1, allMovies.Genre2, allMovies.Genre3).all()
+    results = db.session.query(allMovies.averageRating, allMovies.isAdult, allMovies.startYear, allMovies.runtimeMinutes, allMovies.Genre1, allMovies.Genre2, allMovies.Genre3).slice(1,11)
     movieData = []
 
     for result in results:

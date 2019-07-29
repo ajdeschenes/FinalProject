@@ -1,42 +1,53 @@
 // from data.js
 var tableData = [];
 
-d3.json("/moviedata", function(dataPlease) {
-  console.log(dataPlease);
-  var AllData = dataPlease;
-  console.log(AllData);
-  // display all values
-  for (var i = 0; i < AllData.length; i++) {
-    tableData.push(AllData[i])
-}
-});
-console.log(tableData);
+// d3.json("/moviedata", function(dataPlease) {
+//   console.log(dataPlease);
+//   var AllData = dataPlease;
+//   console.log(AllData);
+//   // display all values
+//   for (var i = 0; i < AllData.length; i++) {
+//     tableData.push(AllData[i])
+// }
+// });
+// console.log(tableData);
 
-// get table references
-var tbody = d3.select("#data-table");
+// // get table references
+// var tbody = d3.select("#data-table");
 
 function buildTable(DATA) {
-  // let jsonData = tableData;
- // First, clear out any existing data
-tbody.html("");
-console.log(DATA);
+  d3.json("/moviedata", function (dataPlease) {
+    console.log(dataPlease);
+    var AllData = dataPlease;
+    console.log(AllData);
+    // display all values
+    for (var i = 0; i < AllData.length; i++) {
+      tableData.push(AllData[i])
+    }
+    // get table references
+    var tbody2 = d3.select("#data-table");
+    // First, clear out any existing data
+    tbody2.html("");
+    //console.log(DATA);
 
- 
-// Next, loop through each object in the data
-// and append a row and cells for each value in the row
-DATA.forEach((dataRow) => {
-  // Append a row to the table body
-  var row = tbody.append("tr");
 
-  // Loop through each field in the dataRow and add
-  // each value as a table cell (td)
-  Object.entries(dataRow).forEach(([key, value]) => {
-    var cell = row.append("td");
-    cell.text(value);
+    // Next, loop through each object in the data
+    // and append a row and cells for each value in the row
+    DATA.forEach((dataRow) => {
+      // Append a row to the table body
+      var row = tbody2.append("tr");
+
+      // Loop through each field in the dataRow and add
+      // each value as a table cell (td)
+      Object.entries(dataRow).forEach(([key, value]) => {
+        var cell = row.append("td");
+        cell.text(value);
+      });
+    });
   });
-});
+  //console.log(tableData);
 
- filterTable2();
+  filterTable2();
 }
 
 
@@ -77,7 +88,7 @@ function filterTable() {
   });
 
   // Finally, rebuild the table using the filtered Data
-  buildTable(filteredData);
+  //buildTable(filteredData);
 }
 
 // var tbody2 = d3.select("#filter-table");
@@ -108,7 +119,7 @@ function filterTable2() {
   //   ratings_entered.text(ratings_filtered.property("value"));
   //   console.log(ratings_filtered.property("value"));
   // }
-  
+
   if (adults_filtered.property("value") === "") {
     adults_entered.text(" ")
     console.log("No Adult Filter Entered");
@@ -117,7 +128,7 @@ function filterTable2() {
     adults_entered.text(adults_filtered.property("value"));
     console.log(adults_filtered.property("value"));
   }
-  
+
   if (years_filtered.property("value") === "") {
     years_entered.text(" ")
     console.log("No Years Filter Entered");
@@ -126,7 +137,7 @@ function filterTable2() {
     years_entered.text(years_filtered.property("value"));
     console.log(years_filtered.property("value"));
   }
-  
+
   if (film_length_filtered.property("value") === "") {
     film_length_entered.text(" ")
     console.log("No Film Length Filter Entered");
@@ -163,7 +174,7 @@ function filterTable2() {
     console.log(genre3_filtered.property("value"));
   }
 
-  
+
 }
 
 // Attach an event to listen for changes to each filter
