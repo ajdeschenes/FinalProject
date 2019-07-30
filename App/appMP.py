@@ -17,7 +17,7 @@ from sklearn.externals import joblib
 
 
 
-conn_str = "root:LETSgobucks1!@localhost/imdbData?charset=utf8"
+conn_str = "root:<password>@localhost/imdbData?charset=utf8"
 engine = create_engine(f'mysql://{conn_str}')
 
 Base = automap_base()
@@ -35,7 +35,7 @@ session = Session(engine)
 app = Flask(__name__)
 CORS(app)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:LETSgobucks1!@localhost/imdbData'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:<password>@localhost/imdbData'
 db = SQLAlchemy(app)
 
 # create route that renders index.html template
