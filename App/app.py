@@ -50,9 +50,28 @@ def home():
 
 @app.route("/moviedata")
 def movies():
-    results = db.session.query(allMovies.averageRating, allMovies.isAdult, allMovies.startYear, allMovies.runtimeMinutes, allMovies.Genre1, allMovies.Genre2, allMovies.Genre3).slice(1,11)
-    movieData = []
+    results = db.session.query(allMovies.averageRating, \
+            allMovies.isAdult, allMovies.startYear, \
+            allMovies.runtimeMinutes, allMovies.Genre1, \
+            allMovies.Genre2, allMovies.Genre3)\
+            .filter_by(isAdult=0)\
+            .filter_by(startYear="2008")\
+            .filter_by(runtimeMinutes="93")\
+            .filter_by(Genre1="3")\
+            .filter_by(Genre2="8")\
+            .filter_by(Genre3="9")\
+            .slice(0,1000)
 
+            # .filter_by(isAdult=request.form["adults"])
+            # .filter_by(startYear=request.form["years"])
+            # .filter_by(runtimeMinutes=request.form["film_length"])
+            # .filter_by(Genre1=request.form["genre_1"])
+            # .filter_by(Genre2=request.form["genre_2"])
+            # .filter_by(Genre3=request.form["genre_3"])
+            # .slice(0,1000)
+
+    movieData = []
+    
     for result in results:
         rating = result[0] 
         adult = result[1] 
@@ -64,13 +83,13 @@ def movies():
 
 
         result_data = {
-            "adult": adult,
-            "year": year,
-            "runtime": runtime,
-            "primary_genre": primary_genre,
-            "secondary_genre": secondary_genre,
-            "tertiary_genre": tertiary_genre,
-            "rating": rating
+            "a": adult,
+            "b": year,
+            "c": runtime,
+            "d": primary_genre,
+            "e": secondary_genre,
+            "f": tertiary_genre,
+            "g": rating
         }
 
         movieData.append(result_data)
