@@ -65,7 +65,11 @@
                     </li>
                     <li class="filter list-group-item">
                       <label for="button">Enter Predictions</label>
+<<<<<<< HEAD
                       <button type="button"><input type="submit" value="Flop or Not"/></button>
+=======
+                      <button type="button"><input type = "submit" value = "Flop or Not" /></button>
+>>>>>>> f0fa7de5ab69e82bb88696b5832b501f91eae3fe
                     </li>
                   </ul>
                   <!-- </form> -->
@@ -104,7 +108,17 @@
                     <td id="genre2_entered">Just Chilling</td>
                     <td id="genre3_entered">T & A</td>
                     <td id="prediction">We are so smart</td>
+<<<<<<< HEAD
                     <td id="ratings_entered"></td>
+=======
+                    {% if result %}
+                    <td id="ratings_entered">  
+                        {% for key, value in result.items() %}
+                           {{ value }}
+                        {% endfor %}</td>
+                     {% endif %}
+
+>>>>>>> f0fa7de5ab69e82bb88696b5832b501f91eae3fe
               </table>
             </div>
         </div>
