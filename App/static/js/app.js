@@ -1,20 +1,6 @@
 // from data.js
 var tableData = [];
 
-// d3.json("/moviedata", function(dataPlease) {
-//   console.log(dataPlease);
-//   var AllData = dataPlease;
-//   console.log(AllData);
-//   // display all values
-//   for (var i = 0; i < AllData.length; i++) {
-//     tableData.push(AllData[i])
-// }
-// });
-// console.log(tableData);
-
-// // get table references
-// var tbody = d3.select("#data-table");
-
 function buildTable(DATA) {
   d3.json("/moviedata", function (dataPlease) {
     console.log(dataPlease);
@@ -88,7 +74,7 @@ function filterTable() {
   });
 
   // Finally, rebuild the table using the filtered Data
-  //buildTable(filteredData);
+  buildTable(filteredData);
 }
 
 // var tbody2 = d3.select("#filter-table");
