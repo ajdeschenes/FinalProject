@@ -33,7 +33,7 @@
               <div class="panel-heading">Filter Search</div>
               <div class="panel-body">
                 <div class="form-group">
-                  <!-- <form action="http://127.0.0.1:5000/prediction" method="POST"> -->
+                  <form action="http://127.0.0.1:5000/prediction" method="POST">
                   <ul class="list-group" id="filters">
                     <!-- <li class="filter list-group-item">
                       <label for="rating">Enter a Rating</label>
@@ -41,34 +41,38 @@
                     </li> -->
                     <li class="filter list-group-item">
                       <label for="adult">Is Adult?</label>
-                      <input class="form-control" id="adults" type="number" placeholder="0" required>
+                      <input class="form-control" name="adults" id="adults" type="number" placeholder="0">
                     </li>
                     <li class="filter list-group-item">
                       <label for="year">Enter a Year</label>
-                      <input class="form-control" id="years" type="text" placeholder="1894" required>
+                      <input class="form-control" name= "years" id="years" type="text" placeholder="1894">
                     </li>
                     <li class="filter list-group-item">
                       <label for="movie_length">Enter the movie length in minutes</label>
-                      <input class="form-control" id="film_length" type="text" placeholder="45" required>
+                      <input class="form-control" name="film_length" id="film_length" type="text" placeholder="45">
                     </li>
                     <li class="filter list-group-item">
                       <label for="genre1">Select the Primary Genre</label>
-                      <input class="form-control" id="genre_1" type="text" placeholder="18" required>
+                      <input class="form-control" name="genre_1" id="genre_1" type="text" placeholder="18">
                     </li>
                     <li class="filter list-group-item">
                         <label for="genre2">Select the Secondary Genre</label>
-                        <input class="form-control" id="genre_2" type="text" placeholder="0" required>
+                        <input class="form-control" name="genre_2" id="genre_2" type="text" placeholder="0">
                     </li>
                     <li class="filter list-group-item">
                         <label for="genre3">Select the Tertiary Genre</label>
-                        <input class="form-control" id="genre_3" type="text" placeholder="0" required>
+                        <input class="form-control" name="genre_3" id="genre_3" type="text" placeholder="0">
                     </li>
                     <li class="filter list-group-item">
                       <label for="button">Enter Predictions</label>
+<<<<<<< HEAD
+                      <button type="button"><input type = "submit" value = "Flop or Not" /></button>
+=======
                       <button type="button"><input type="submit" value="Flop or Not"/></button>
+>>>>>>> 67b32d4e8c88f0051c7512d76d56b02a42c37c8e
                     </li>
                   </ul>
-                  <!-- </form> -->
+                  </form>
                 </div>
               </div>
             </div>
@@ -104,7 +108,8 @@
                     <td id="genre2_entered">Just Chilling</td>
                     <td id="genre3_entered">T & A</td>
                     <td id="prediction">We are so smart</td>
-                    <td id="ratings_entered"></td>
+                    <td id="ratings_entered">
+                      A value from the prediction route</td>
               </table>
             </div>
         </div>
@@ -118,13 +123,13 @@
             <table id="table1" class="table table-striped">
               <thead>
                 <tr>
-                  <th class="table-head" id="leftAlign">Is Adult?</th>
-                  <th class="table-head" id="leftAlign">Year</th>
-                  <th class="table-head" id="leftAlign">Runtime</th>
-                  <th class="table-head" id="leftAlign">Primary Genre</th>
-                  <th class="table-head" id="leftAlign">Secondary Genre</th>
-                  <th class="table-head" id="leftAlign">Tertiary Genre</th>
-                  <th class="table-head" id="leftAlign">Rating</th>
+                  <th class="table-head">Is Adult?</th>
+                  <th class="table-head">Year</th>
+                  <th class="table-head">Runtime</th>
+                  <th class="table-head">Primary Genre</th>
+                  <th class="table-head">Secondary Genre</th>
+                  <th class="table-head">Tertiary Genre</th>
+                  <th class="table-head">Rating</th>
                 </tr>
               </thead>
               <tbody id="data-table"></tbody>
