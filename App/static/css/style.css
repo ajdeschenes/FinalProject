@@ -116,6 +116,10 @@ select {
     color: #080808;
 }
 
+#table-area #leftAlign {
+  text-align: left;
+}
+
 .loader {
   margin-top: 50px;
 }
