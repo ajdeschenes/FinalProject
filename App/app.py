@@ -105,9 +105,7 @@ def predict():
             "rating": rating[0]
         }
         
-    
-    return jsonify(prediction)
-    return redirect(url_for("home"))
+    return render_template('index.html', result=prediction)
 
 
 if __name__ == "__main__":
