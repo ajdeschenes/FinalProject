@@ -41,31 +41,31 @@
                     </li> -->
                     <li class="filter list-group-item">
                       <label for="adult">Is Adult?</label>
-                      <input class="form-control" id="adults" type="number" placeholder="0">
+                      <input class="form-control" name="adults" id="adults" type="number" placeholder="0">
                     </li>
                     <li class="filter list-group-item">
                       <label for="year">Enter a Year</label>
-                      <input class="form-control" id="years" type="text" placeholder="1894">
+                      <input class="form-control" name= "years" id="years" type="text" placeholder="1894">
                     </li>
                     <li class="filter list-group-item">
                       <label for="movie_length">Enter the movie length in minutes</label>
-                      <input class="form-control" id="film_length" type="text" placeholder="45">
+                      <input class="form-control" name="film_length" id="film_length" type="text" placeholder="45">
                     </li>
                     <li class="filter list-group-item">
                       <label for="genre1">Select the Primary Genre</label>
-                      <input class="form-control" id="genre_1" type="text" placeholder="18">
+                      <input class="form-control" name="genre_1" id="genre_1" type="text" placeholder="18">
                     </li>
                     <li class="filter list-group-item">
                         <label for="genre2">Select the Secondary Genre</label>
-                        <input class="form-control" id="genre_2" type="text" placeholder="0">
+                        <input class="form-control" name="genre_2" id="genre_2" type="text" placeholder="0">
                     </li>
                     <li class="filter list-group-item">
                         <label for="genre3">Select the Tertiary Genre</label>
-                        <input class="form-control" id="genre_3" type="text" placeholder="0">
+                        <input class="form-control" name="genre_3" id="genre_3" type="text" placeholder="0">
                     </li>
                     <li class="filter list-group-item">
                       <label for="button">Enter Predictions</label>
-                      <button type="button">Flop or Not</button>
+                      <button type="button"><input type = "submit" value = "Flop or Not" /></button>
                     </li>
                   </ul>
                   </form>
@@ -104,7 +104,8 @@
                     <td id="genre2_entered">Just Chilling</td>
                     <td id="genre3_entered">T & A</td>
                     <td id="prediction">We are so smart</td>
-                    <td id="ratings_entered"></td>
+                    <td id="ratings_entered">
+                      A value from the prediction route</td>
               </table>
             </div>
         </div>
