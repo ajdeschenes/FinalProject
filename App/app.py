@@ -6,16 +6,22 @@ from flask import (
     render_template,
     jsonify,
     request,
-    redirect)
+    redirect,
+    url_for)
 from flask_sqlalchemy import SQLAlchemy
+import sys
 
 from sqlalchemy import create_engine, func
 from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
 
+import numpy as np
+
+import pickle
 
 
-conn_str = "root:<password>@localhost/imdbData?charset=utf8"
+
+conn_str = "root:helpme01@localhost/imdbData?charset=utf8"
 engine = create_engine(f'mysql://{conn_str}')
 
 Base = automap_base()
@@ -33,19 +39,13 @@ session = Session(engine)
 app = Flask(__name__)
 CORS(app)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:<password>@localhost/imdbData'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:helpme01@localhost/imdbData'
 db = SQLAlchemy(app)
 
 # create route that renders index.html template
 @app.route("/")
 def home():
     return render_template("index.html")
-
-@app.route('/test', methods=['POST'])
-def my_form_post():
-    text = request.form['text']
-    processed_text = text.upper()
-    return processed_text
 
 
 @app.route("/moviedata")
@@ -81,17 +81,33 @@ def movies():
 
 @app.route("/prediction", methods=["GET", "POST"])
 def predict():
+    if request.method == 'POST':
+        # Load Model
+        print("I work!", file=sys.stdout)
 
-    # Load Model
-    loaded_model = pickle.load(open(filename, '../imdbData'))
+        loaded_model = pickle.load(open('../../ImdbModel','rb'))
 
-    new_film = [request.form["adults"], request.form["years"], request.form["film_length"], request.form["genre_1"], request.form["genre_2"], request.form["genre_3"]]
+        new_film = [request.form["adults"], request.form["years"], request.form["film_length"], request.form["genre_1"], request.form["genre_2"], request.form["genre_3"]]
+        print(new_film, file=sys.stdout)
+        sys.stdout.flush()
 
-    # Predict result
-    result = loaded_model.predict(new_film)
-    print(result)
+        new_film = np.array(new_film)
+
+        new_film = new_film.reshape(1,-1)
+       
+        # Predict result
+        result = loaded_model.predict(new_film)
+        print(result, file=sys.stdout)
+
+        rating = result.tolist()
+
+        prediction = {
+            "rating": rating[0]
+        }
+        
     
-    return render_template("index.html", result=result)
+    return jsonify(prediction)
+    return redirect(url_for("home"))
 
 
 if __name__ == "__main__":
