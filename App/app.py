@@ -124,7 +124,7 @@ def predict():
             "rating": rating[0]
         }
         
-    return render_template('prediction.html', result=prediction, data=data)
+    return render_template('prediction.html', result=prediction)
 
 
 if __name__ == "__main__":
