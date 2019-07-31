@@ -21,7 +21,7 @@ import pickle
 from sklearn.externals import joblib
 
 
-conn_str = "root:<password>@localhost/imdbData?charset=utf8"
+conn_str = "root:helpme01@localhost/imdbData?charset=utf8"
 engine = create_engine(f'mysql://{conn_str}')
 
 Base = automap_base()
