@@ -21,7 +21,7 @@ import pickle
 from sklearn.externals import joblib
 
 
-conn_str = "root:helpme01@localhost/imdbData?charset=utf8"
+conn_str = "root:<password>@localhost/imdbData?charset=utf8"
 engine = create_engine(f'mysql://{conn_str}')
 
 Base = automap_base()
@@ -50,92 +50,39 @@ def home():
 
 @app.route("/moviedata", methods=["GET", "POST"])
 def movies():
-    if request.method == 'POST':
-        results = db.session.query(allMovies.averageRating, \
-                allMovies.isAdult, allMovies.startYear, \
-                allMovies.runtimeMinutes, allMovies.Genre1, \
-                allMovies.Genre2, allMovies.Genre3)\
-                .filter_by(startYear=request.form["years"])
-                # .filter_by(isAdult=request.form["adults"])\
-                # .filter_by(runtimeMinutes=request.form["film_length"])\
-                # .filter_by(Genre1=request.form["genre_1"])\
-                # .filter_by(Genre2=request.form["genre_2"])\
-                # .filter_by(Genre3=request.form["genre_3"])\
-                # .slice(0,1000)
+    results = db.session.query(allMovies.averageRating, \
+            allMovies.isAdult, allMovies.startYear, \
+            allMovies.runtimeMinutes, allMovies.Genre1, \
+            allMovies.Genre2, allMovies.Genre3, allMovies.primaryTitle)\
+            .slice(0,10)
 
-        movieData = []
-        
-        for result in results:
-            rating = result[0] 
-            adult = result[1] 
-            year = result[2] 
-            runtime = result[3] 
-            primary_genre = result[4]
-            secondary_genre = result[5]
-            tertiary_genre = result[6]
-            # title = result[7]
+    movieData = []
+    
+    for result in results:
+        rating = result[0] 
+        adult = result[1] 
+        year = result[2] 
+        runtime = result[3] 
+        primary_genre = result[4]
+        secondary_genre = result[5]
+        tertiary_genre = result[6]
+        title = result[7]
 
 
-            result_data = {
-                # "0": title,
-                "a": adult,
-                "b": year,
-                "c": runtime,
-                "d": primary_genre,
-                "e": secondary_genre,
-                "f": tertiary_genre,
-                "g": rating
-            }
+        result_data = {
+            "0 Title": title,
+            "1 Adult": adult,
+            "2 Year": year,
+            "3 Runtime": runtime,
+            "4 Genre1": primary_genre,
+            "5 Genre2": secondary_genre,
+            "6 Genre3": tertiary_genre,
+            "7 Rating": rating
+        }
 
-            movieData.append(result_data)
-            print("I'm working I swear!", file=sys.stdout)
+        movieData.append(result_data)
 
-        return jsonify(movieData)
-
-    else:
-        results = db.session.query(allMovies.averageRating, \
-                allMovies.isAdult, allMovies.startYear, \
-                allMovies.runtimeMinutes, allMovies.Genre1, \
-                allMovies.Genre2, allMovies.Genre3)\
-                .slice(0,10)
-
-                # .filter_by(isAdult=request.form["adults"])
-                # .filter_by(startYear=request.form["years"])
-                # .filter_by(runtimeMinutes=request.form["film_length"])
-                # .filter_by(Genre1=request.form["genre_1"])
-                # .filter_by(Genre2=request.form["genre_2"])
-                # .filter_by(Genre3=request.form["genre_3"])
-                # .slice(0,1000)
-
-        movieData = []
-        
-        for result in results:
-            rating = result[0] 
-            adult = result[1] 
-            year = result[2] 
-            runtime = result[3] 
-            primary_genre = result[4]
-            secondary_genre = result[5]
-            tertiary_genre = result[6]
-            # title = result[7]
-
-
-            result_data = {
-                # "0": title,
-                "a": adult,
-                "b": year,
-                "c": runtime,
-                "d": primary_genre,
-                "e": secondary_genre,
-                "f": tertiary_genre,
-                "g": rating
-            }
-
-            movieData.append(result_data)
-            print("Normal Data Set Printing", file=sys.stdout)
-            print(movieData, file=sys.stdout)
-
-        return jsonify(movieData)
+    return jsonify(movieData)
 
 @app.route("/prediction", methods=["GET", "POST"])
 def predict():
@@ -143,8 +90,11 @@ def predict():
         # Load Model
         print("I work!", file=sys.stdout)
 
-        # loaded_model = pickle.load(open('../../ImdbModel','rb'))
-        loaded_model = joblib.load('../../imdbMarcModel.pkl.z')
+        # Amelia/Amy's Model
+        loaded_model = pickle.load(open('../../ImdbModel','rb'))
+        
+        # Marc's Model
+        # loaded_model = joblib.load('../../imdbMarcModel.pkl.z')
 
         new_film = [request.form["adults"], request.form["years"], request.form["film_length"], \
             request.form["genre_1"], request.form["genre_2"], request.form["genre_3"]]
@@ -189,7 +139,7 @@ def predict():
         results = db.session.query(allMovies.averageRating, \
                 allMovies.isAdult, allMovies.startYear, \
                 allMovies.runtimeMinutes, allMovies.Genre1, \
-                allMovies.Genre2, allMovies.Genre3)\
+                allMovies.Genre2, allMovies.Genre3, allMovies.primaryTitle)\
                 .filter_by(isAdult=request.form["adults"])\
                 .filter_by(runtimeMinutes=request.form["film_length"])\
                 .filter_by(Genre1=request.form["genre_1"])\
@@ -209,18 +159,18 @@ def predict():
             primary_genre = result[4]
             secondary_genre = result[5]
             tertiary_genre = result[6]
-            # title = result[7]
+            title = result[7]
 
 
             result_data = {
-                # "0": title,
-                "a": adult,
-                "b": year,
-                "c": runtime,
-                "d": primary_genre,
-                "e": secondary_genre,
-                "f": tertiary_genre,
-                "g": rating
+                "0 Title": title,
+                "1 Adult": adult,
+                "2 Year": year,
+                "3 Runtime": runtime,
+                "4 Genre1": primary_genre,
+                "5 Genre2": secondary_genre,
+                "6 Genre3": tertiary_genre,
+                "7 Rating": rating
             }
 
             movieData.append(result_data)
