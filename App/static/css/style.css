@@ -210,6 +210,11 @@ select {
     color: red;
 }
 
+.modal-content {
+  background-color: #080808;
+  color: #D5CABB;
+}
+
 /* media queries which will only be activated at specific screen sizes */
 @media (max-width: 800px) {
   #table-area td {

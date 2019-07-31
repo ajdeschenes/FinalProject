@@ -74,9 +74,11 @@ def movies():
         primary_genre = result[4]
         secondary_genre = result[5]
         tertiary_genre = result[6]
+        title = result[7]
 
 
         result_data = {
+            "0": title,
             "a": adult,
             "b": year,
             "c": runtime,
