@@ -106,23 +106,45 @@ def predict():
 
         loaded_model = pickle.load(open('../../ImdbModel','rb'))
 
-        new_film = [request.form["adults"], request.form["years"], request.form["film_length"], request.form["genre_1"], request.form["genre_2"], request.form["genre_3"]]
+        new_film = [request.form["adults"], request.form["years"], request.form["film_length"], \
+            request.form["genre_1"], request.form["genre_2"], request.form["genre_3"]]
         print(new_film, file=sys.stdout)
-        sys.stdout.flush()
+        # sys.stdout.flush()
 
-        new_film = np.array(new_film)
+        predict_film = np.array(new_film)
 
-        new_film = new_film.reshape(1,-1)
+        predict_film = predict_film.reshape(1,-1)
        
         # Predict result
-        result = loaded_model.predict(new_film)
+        result = loaded_model.predict(predict_film)
         print(result, file=sys.stdout)
 
         rating = result.tolist()
 
+        def commentary(rating):
+            if rating <= 3:
+                comment = "This sucks worse than what Rachel said"
+            elif rating <= 6:
+                comment = "Mediocre at best"
+            else:
+                comment = "The best thing since sliced bread"
+            
+            return comment
+
+
         prediction = {
+            "adults_entered1": new_film[0],
+            "years_entered1": new_film[1],
+            "film_length_entered1": new_film[2],
+            "genre1_entered1" : new_film[3], 
+            "genre2_entered1" : new_film[4],
+            "genre3_entered1" : new_film[5],
+            "prediction": commentary(rating[0]),
             "rating": rating[0]
         }
+
+        for key, value in prediction.items():
+           print(f"{key}: {value}")
         
     return render_template('prediction.html', result=prediction)
 

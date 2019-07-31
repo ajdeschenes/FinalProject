@@ -37,27 +37,27 @@
                   <ul class="list-group" id="filters">
                         <li class="filter list-group-item">
                                 <label for="adult">Is Adult?</label>
-                                <input class="form-control" name="adults" id="adults" type="number" placeholder="0">
+                                <input class="form-control" name="adults" id="adults" type="number" placeholder="0" required>
                               </li>
                               <li class="filter list-group-item">
                                 <label for="year">Enter a Year</label>
-                                <input class="form-control" name= "years" id="years" type="text" placeholder="1894">
+                                <input class="form-control" name= "years" id="years" type="text" placeholder="1894" required>
                               </li>
                               <li class="filter list-group-item">
                                 <label for="movie_length">Enter the movie length in minutes</label>
-                                <input class="form-control" name="film_length" id="film_length" type="text" placeholder="45">
+                                <input class="form-control" name="film_length" id="film_length" type="text" placeholder="45" required>
                               </li>
                               <li class="filter list-group-item">
                                 <label for="genre1">Select the Primary Genre</label>
-                                <input class="form-control" name="genre_1" id="genre_1" type="text" placeholder="18">
+                                <input class="form-control" name="genre_1" id="genre_1" type="text" placeholder="18" required>
                               </li>
                               <li class="filter list-group-item">
                                   <label for="genre2">Select the Secondary Genre</label>
-                                  <input class="form-control" name="genre_2" id="genre_2" type="text" placeholder="0">
+                                  <input class="form-control" name="genre_2" id="genre_2" type="text" placeholder="0" required>
                               </li>
                               <li class="filter list-group-item">
                                   <label for="genre3">Select the Tertiary Genre</label>
-                                  <input class="form-control" name="genre_3" id="genre_3" type="text" placeholder="0">
+                                  <input class="form-control" name="genre_3" id="genre_3" type="text" placeholder="0" required>
                               </li>
                               <li class="filter list-group-item">
                       <label for="button">Enter Predictions</label>
@@ -92,8 +92,16 @@
                   </tr>
                 </thead>
                 <tbody id="filter-table"></tbody>
-                    
-                    <td id="adults_entered"></td>
+                    <tr>
+                        {% if result %}
+                            {% for key, value in result.items() %}
+                                <td id={{key}}>
+                                        {{value}}
+                                </td>
+                            {% endfor %}
+                        {% endif %}
+                    </tr>
+                    <!-- <td id="adults_entered"></td>
                     <td id="years_entered"></td>
                     <td id="film_length_entered"></td>
                     <td id="genre1_entered"></td>
@@ -102,11 +110,7 @@
                     <td id="prediction">We are so smart</td>
                     <td id="ratings_entered"></td>
                     <td id="ratings_entered">  
-                    {% if result %}
-                        {% for key, value in result.items() %}
-                            {{value}}
-                        {% endfor %}
-                    {% endif %}</td>
+                    </td> -->
               </table>
             </div>
         </div>
