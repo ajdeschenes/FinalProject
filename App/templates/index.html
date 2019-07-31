@@ -6,6 +6,8 @@
   <title>Movie Predictor</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/superhero/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
   <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
   <link rel="stylesheet" href="../static/css/style.css">
 </head>
@@ -18,6 +20,9 @@
           <a class="navbar-brand nav-text" href="index.html">Movie Predictor
             <img class="nav-pic" src="../static/images/popcorn.png">
           </a>
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+              Help
+            </button>
         </div>
       </div>
     </nav>
@@ -132,6 +137,44 @@
         </div>
       </div>
     </div>
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content" style="background-color:black">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">About Your Inputs</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <h3>Adult</h3>
+                <p>Is this an adult movie?</p>
+                <p>0 = No</p>
+                <p>1 = Yes</p>
+              <h3>Year</h3>
+                <p>In what year was/will the movie be releeased?</p>
+              <h3>Film Length</h3>
+                <p>The number of minutes for which the film runs.</p>
+              <h3>Genres</h3>
+                <p>Enter a number indicating the primary genre and any subgenres:</p>
+                <t>
+                  <th>
+                    <td>Genre</td><td>Reference</td>
+                  </th>
+                  <tr>
+                    <td>None</td><td>0</td>
+                    <td>Action</td><td>1</td>
+                    <td>Adventure</td><td>2</td>
+                  </tr>
+                </t>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+          </div>
+        </div>
+      </div>
     <footer class="footer">
       <span class="bottom">Movie Predictor</span>
     </footer>
