@@ -53,7 +53,7 @@ def movies():
     results = db.session.query(allMovies.averageRating, \
             allMovies.isAdult, allMovies.startYear, \
             allMovies.runtimeMinutes, allMovies.Genre1, \
-            allMovies.Genre2, allMovies.Genre3)\
+            allMovies.Genre2, allMovies.Genre3, allMovies.primaryTitle)\
             .filter_by(isAdult=0)\
             .filter_by(startYear="2008")\
             .filter_by(runtimeMinutes="93")\
@@ -80,9 +80,11 @@ def movies():
         primary_genre = result[4]
         secondary_genre = result[5]
         tertiary_genre = result[6]
+        title = result[7]
 
 
         result_data = {
+            "0": title,
             "a": adult,
             "b": year,
             "c": runtime,
