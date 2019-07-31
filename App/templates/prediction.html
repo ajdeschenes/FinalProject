@@ -133,6 +133,13 @@
                 </tr>
               </thead>
               <tbody id="data-table"></tbody>
+                {% for filterData_item in filterData %}
+                  <tr id="filterDataRow">
+                  {% for key, value in filterData_item.items() %}
+                      <td>{{value}}</td>
+                  {% endfor %}
+                  </tr>
+                {% endfor %}
             </table>
           </div>
           
@@ -144,7 +151,8 @@
     </footer>
   </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.11.0/d3.js"></script>
-  <script src="../static/js/appPrediction.js"></script>
+  <!-- <script src="../static/js/appPrediction.js"></script> -->
+  <!-- <script src="../static/js/app.js"></script> -->
 </body>
 
 </html>
