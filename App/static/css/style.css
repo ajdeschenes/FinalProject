@@ -246,8 +246,7 @@ select {
 }
 
 .modal-content {
-  background-color: #080808;
-  color: #D5CABB;
+    color:black;
 }
 
 /* media queries which will only be activated at specific screen sizes */
