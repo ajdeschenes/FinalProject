@@ -111,13 +111,19 @@ def predict():
 
         rating = result.tolist()
 
+        rounded_rating = round(rating[0],1)
+        high_rating = rounded_rating + .5
+        low_rating = rounded_rating -.5
+
         def commentary(rating):
-            if rating <= 3:
-                comment = "This sucks worse than what Rachel said"
-            elif rating <= 6:
-                comment = "Mediocre at best"
+            if rounded_rating <= 2:
+                comment = "This movie is the reason people hate."
+            elif rounded_rating <= 5:
+                comment = "Complete waste of time."
+            elif rounded_rating <= 7.5:
+                comment = "Mediocre at best."
             else:
-                comment = "The best thing since sliced bread"
+                comment = "The best thing since sliced bread."
             
             return comment
 
@@ -129,22 +135,23 @@ def predict():
             "genre1_entered1" : new_film[3], 
             "genre2_entered1" : new_film[4],
             "genre3_entered1" : new_film[5],
-            "prediction": commentary(rating[0]),
-            "rating": rating[0]
+            "prediction1": commentary(rating[0]),
+            "rating1": rounded_rating
         }
 
         for key, value in prediction.items():
            print(f"{key}: {value}")
-        
+
         results = db.session.query(allMovies.averageRating, \
                 allMovies.isAdult, allMovies.startYear, \
                 allMovies.runtimeMinutes, allMovies.Genre1, \
                 allMovies.Genre2, allMovies.Genre3, allMovies.primaryTitle)\
-                .filter_by(isAdult=request.form["adults"])\
-                .filter_by(runtimeMinutes=request.form["film_length"])\
+                .filter((allMovies.averageRating >= low_rating) & (allMovies.averageRating <= high_rating))\
                 .filter_by(Genre1=request.form["genre_1"])\
-                .slice(0,10)
+                .slice(0,1000)
 
+                # .filter_by(isAdult=request.form["adults"])\
+                # .filter_by(runtimeMinutes=request.form["film_length"])\
                 # .filter_by(startYear=request.form["years"])\
                 # .filter_by(Genre2=request.form["genre_2"])\
                 # .filter_by(Genre3=request.form["genre_3"])\

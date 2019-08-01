@@ -176,7 +176,7 @@ select {
 }
 
 #ratings_entered {
-    text-align: center;
+    text-align: left;
 }
 
 #adults_entered {
@@ -208,6 +208,41 @@ select {
     font-style: oblique;
     font-weight: bold;
     color: red;
+}
+
+#ratings_entered1 {
+  text-align: left;
+}
+
+#adults_entered1 {
+  text-align: left;
+}
+
+#years_entered1 {
+  text-align: left;
+}
+
+#film_length_entered1 {
+  text-align: left;
+}
+
+#genre1_entered1 {
+  text-align: left;
+}
+
+#genre2_entered1 {
+  text-align: left;
+}
+
+#genre3_entered1 {
+  text-align: left;
+}
+
+#prediction1 {
+  text-align: left;
+  font-style: oblique;
+  font-weight: bold;
+  color: red;
 }
 
 .modal-content {
