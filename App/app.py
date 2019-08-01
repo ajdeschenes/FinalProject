@@ -54,6 +54,8 @@ def movies():
             allMovies.isAdult, allMovies.startYear, \
             allMovies.runtimeMinutes, allMovies.Genre1, \
             allMovies.Genre2, allMovies.Genre3, allMovies.primaryTitle)\
+            .filter_by(isAdult=0)\
+            .order_by(allMovies.averageRating.desc())\
             .slice(0,10)
 
     movieData = []
@@ -148,6 +150,7 @@ def predict():
                 allMovies.Genre2, allMovies.Genre3, allMovies.primaryTitle)\
                 .filter((allMovies.averageRating >= low_rating) & (allMovies.averageRating <= high_rating))\
                 .filter_by(Genre1=request.form["genre_1"])\
+                .order_by(allMovies.startYear.desc())\
                 .slice(0,1000)
 
                 # .filter_by(isAdult=request.form["adults"])\
