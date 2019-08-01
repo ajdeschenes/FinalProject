@@ -20,9 +20,6 @@
           <a class="navbar-brand nav-text" href="index.html">Movie Predictor
             <img class="nav-pic" src="../static/images/popcorn.png">
           </a>
-          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-              Help
-            </button>
         </div>
       </div>
     </nav>
@@ -35,7 +32,10 @@
         <div class="col-md-2">
           <aside class="filters">
             <div class="panel panel-default">
-              <div class="panel-heading">Filter Search</div>
+              <div class="panel-heading">
+                Filter Search
+                <a data-toggle="modal" href="#exampleModal"><span class="glyphicon glyphicon-info-sign"></span></a>
+              </div>
               <div class="panel-body">
                 <div class="form-group">
                   <form action="http://127.0.0.1:5000/prediction" method="POST"> 
@@ -139,8 +139,8 @@
     </div>
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
-          <div class="modal-content" style="background-color:black">
-            <div class="modal-header">
+          <div class="modal-content" style="background-color:#ffed8a">
+            <div class="modal-header" style="background-color: #F7D624">
               <h5 class="modal-title" id="exampleModalLabel">About Your Inputs</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
@@ -157,20 +157,30 @@
                 <p>The number of minutes for which the film runs.</p>
               <h3>Genres</h3>
                 <p>Enter a number indicating the primary genre and any subgenres:</p>
-                <t>
-                  <th>
-                    <td>Genre</td><td>Reference</td>
-                  </th>
+                <table>
                   <tr>
-                    <td>None</td><td>0</td>
-                    <td>Action</td><td>1</td>
-                    <td>Adventure</td><td>2</td>
+                    <th>
+                        Genre
+                      </th>
+                      <th>
+                          Reference
+                      </th>
                   </tr>
-                </t>
+                  <tbody>
+                    <tr>
+                        <td>None</td><td>0</td>
+                      </tr>
+                      <tr>
+                        <td>Action</td><td>1</td>
+                      </tr>
+                      <tr>
+                        <td>Adventure</td><td>2</td>
+                      </tr>
+                  </tbody>
+                </table>
             </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Save changes</button>
+            <div class="modal-footer" style="background-color:#F7D624">
+              <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
             </div>
           </div>
         </div>
